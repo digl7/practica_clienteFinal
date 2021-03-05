@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import Admin from './components/Admin';
+import Api from './components/Api';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Reset from './components/Reset';
@@ -34,8 +34,8 @@ const App = () => {
           <Route path="/reset">
             <Reset/>
           </Route>
-          <Route path="/admin">
-            <Admin/>
+          <Route path="/api" >
+            <Api/>
           </Route>
           <Route path="/" exact>
             Inicio

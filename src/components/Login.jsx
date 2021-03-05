@@ -41,7 +41,7 @@ const Login = (props) => {
             setEmail("")
             setPass("")
             setError(null)
-            props.history.push('/admin')
+            props.history.push('/api')
 
         } catch (error) {
             //console.log(error)
@@ -60,7 +60,7 @@ const Login = (props) => {
                 setEmail("")
                 setPass("")
                 setError(null)
-                props.history.push('/admin')
+                props.history.push('/api')
                 
             } catch (error) {
                 //console.log(error)

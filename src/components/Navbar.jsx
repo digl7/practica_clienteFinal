@@ -23,8 +23,8 @@ const Navbar = (props) => {
                     </NavLink>
                    { props.firebaseuser !== null ? (
 
-                    <NavLink className="btn btn-dark  mr-2" to="/admin">
-                        Admin
+                    <NavLink className="btn btn-dark  mr-2" to="/api">
+                        Api
                     </NavLink>
                     ):null}
 
