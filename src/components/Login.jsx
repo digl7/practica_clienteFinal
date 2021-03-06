@@ -80,7 +80,7 @@ const Login = (props) => {
                 <div className="col-12 col-sm-8 col-md-6 col-xl-4">
                  <form onSubmit={procesarDatos}>
                     {
-                        error && (
+                        error && ( 
                             <div className="alert alert-danger">{error}</div>
                         )
                     }

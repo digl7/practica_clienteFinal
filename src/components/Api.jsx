@@ -1,28 +1,54 @@
 import React, {useState, useEffect} from 'react'
 import {withRouter} from 'react-router-dom'
 import {auth} from '../firebase'
+import axios from 'axios'
 
 
 
 const Api = (props) => {
     const [user, setUser] = React.useState(null)
     const [tituloPelicula, setTituloPelicula] = useState("") //s
-    const [peliculas, setPeliculas] = useState([])
     const [error, setError] = useState(null)
+    
+
+    //paginacion
+
+    const [offset, setOffset] = useState(0);
+    const [data, setData] = useState([]);
+    const [pagina, setPagina] = useState(1)
+    const [totalPaginas, setTotalPaginas] = useState("")
     // http://www.omdbapi.com/?apikey=ea1489f1&s=%22Pirates%20of%20the%20Caribbean%22
 
-    const componentDidMount =  async ()=> {
+    const getData = async() => {
         if (tituloPelicula.length < 3 ){
             setError("Más de tres caracteres")
-        }else{
-            const url = "http://www.omdbapi.com/?apikey=ea1489f1&s="+tituloPelicula;
-            const response = await fetch(url);
-            const data = await response.json()
-            setPeliculas(data.Search) //Array de peliculas
-            setError("")
-            
         }
 
+        else{
+            setError("")
+            const res = await axios.get("http://www.omdbapi.com/?apikey=ea1489f1&s="+tituloPelicula+'&page='+pagina);
+            setTotalPaginas(res.data.totalResults)
+            const data = res.data.Search;
+                const postData = data.map(pelicula => 
+                    <div key={pelicula.imdbID}>
+                        <p>{pelicula.Title}</p>
+                    </div>
+                )
+                setData(postData)
+                console.log(totalPaginas)
+                console.log(pagina)
+
+        }
+    }
+    const next = () => {
+        //Funciona, pero a partir del segundo click (no se por qué)
+        setPagina(pagina+1)
+        getData()
+    }
+
+    const prev = () => {
+        setPagina(pagina-1)
+        getData()
     }
 
     useEffect(()=>{
@@ -33,13 +59,6 @@ const Api = (props) => {
             props.history.push('/login')
         }
     }, [props.history])
-
-    //para renderizar los títulos de las películas.
-    const peliculasBuscadas = peliculas.map((pelicula, index) => {
-        return (
-        <p>{index+1+". "+ pelicula.Title}</p>
-        );
-      });
 
     return (
         <div>
@@ -56,22 +75,43 @@ const Api = (props) => {
             <input  
                 type="text"
                 placeholder="Título a buscar"                
-                required
                 onChange={(e)=>setTituloPelicula(e.target.value)}
                 value={tituloPelicula}
             /> 
             <br/> <br/>
             <button  
                 className="btn btn-success"
-                onClick={()=>componentDidMount()}
-            >Buscar</button>
+                onClick={
+                    ()=>{setPagina(0)
+                        getData()
+                    }
+                }
+                >Buscar
+            </button>
 
             <div>
-                {peliculasBuscadas}
+                {data}
             </div>
+            <div className="botones d-flex mt-3">
+                <button 
+                    className="btn me-3 btn-info btn-izquierda"
+                    onClick={() => prev()}
+                    >prev
+                    </button>
 
+                    <button class="btn text-dark me-3">
+                        <span class="badge text-dark badge-light">{pagina}
+                        / {parseInt(totalPaginas/10)}</span>
+                    </button>
 
-            
+                <button 
+                    className="btn btn-info btn-izquierda"
+                    onClick={() => next()}
+                    >next
+                </button>
+                
+
+            </div>
         </div>
     )
 }
