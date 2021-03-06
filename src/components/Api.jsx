@@ -6,15 +6,16 @@ import axios from 'axios'
 
 
 const Api = (props) => {
+    //login
     const [user, setUser] = React.useState(null)
-    const [tituloPelicula, setTituloPelicula] = useState("") //s
+
+    const [tituloPelicula, setTituloPelicula] = useState("") //s -> API busca por título
+    //para controlar errores
     const [error, setError] = useState(null)
-    
+    //lista de peliculas
+    const [data, setData] = useState([]);
 
     //paginacion
-
-    const [offset, setOffset] = useState(0);
-    const [data, setData] = useState([]);
     const [pagina, setPagina] = useState(1)
     const [totalPaginas, setTotalPaginas] = useState("")
     // http://www.omdbapi.com/?apikey=ea1489f1&s=%22Pirates%20of%20the%20Caribbean%22
@@ -81,8 +82,9 @@ const Api = (props) => {
             <br/> <br/>
             <button  
                 className="btn btn-success"
-                onClick={
-                    ()=>{setPagina(0)
+                onClick={ 
+                    ()=>{
+                        setPagina(1) 
                         getData()
                     }
                 }

@@ -1,13 +1,20 @@
 import React, {useState} from 'react'
 import {db, auth} from '../firebase'
 import {withRouter} from 'react-router-dom'
-
+//google
+import GoogleLogin from 'react-google-login';
+// clientId="1058165535709-phr5tftj0ss9j84l8vtl8q9la1b0ih7r.apps.googleusercontent.com"
 
 const Login = (props) => {
+
     const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
     const [error, setError] = useState(null)
     const [esregistro, setEsregistro] = useState(false)
+
+    const responseGoogle = (response) => {
+        console.log(response);
+    }
 
     const procesarDatos = e => {
         e.preventDefault()
@@ -73,6 +80,15 @@ const Login = (props) => {
     return (
         <div className="mt-5">
             <h3 className="text-center">
+                
+            <GoogleLogin
+              clientId="1058165535709-phr5tftj0ss9j84l8vtl8q9la1b0ih7r.apps.googleusercontent.com"
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+            />
+            
                 {esregistro? "Registro":"Login"}
             </h3>
             <hr/>

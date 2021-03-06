@@ -9,8 +9,8 @@
     projectId: "prueba-627ce",
     storageBucket: "prueba-627ce.appspot.com",
     messagingSenderId: "487264351705",
-    appId: "1:487264351705:web:fcc35572ef4aea82e6d5c8",
-    measurementId: "G-H4WL3GP096"
+    appId: "1:487264351705:web:e052f3e68bfdd8dee6d5c8",
+    measurementId: "G-81QV1TCS2Z"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);

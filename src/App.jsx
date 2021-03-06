@@ -21,14 +21,22 @@ const App = () => {
       }
     })
   }, [])
+  
 
 
-  return ( firebaseuser !== false && (
+    
+
+  return ( 
+    firebaseuser !== false && (
+    
     <Router>
       <div className="container">
+
+
         <Navbar firebaseuser={firebaseuser}/>
         <Switch>
           <Route path="/login">
+
             <Login/>
           </Route>
           <Route path="/reset">
