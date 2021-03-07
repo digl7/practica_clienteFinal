@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
-import {db, auth} from '../firebase'
+import {db, auth, googleProvider} from '../firebase'
 import {withRouter} from 'react-router-dom'
 //google
-import GoogleLogin from 'react-google-login';
+import 'firebase/firestore'
+import 'firebase/auth'
+
 // clientId="1058165535709-phr5tftj0ss9j84l8vtl8q9la1b0ih7r.apps.googleusercontent.com"
 
 const Login = (props) => {
@@ -12,9 +14,6 @@ const Login = (props) => {
     const [error, setError] = useState(null)
     const [esregistro, setEsregistro] = useState(false)
 
-    const responseGoogle = (response) => {
-        console.log(response);
-    }
 
     const procesarDatos = e => {
         e.preventDefault()
@@ -77,17 +76,23 @@ const Login = (props) => {
             }
     }
 
+    //si logeadoengoogle (de firebase.js) es true me redirecciona a /api. 
+
+//google login
+const signInWithGoogle = () => {
+    auth.signInWithPopup(googleProvider).then((res) => {
+        console.log(res.user)
+        props.history.push('/api')
+
+    }).catch((error) => {
+        console.log(error.message)
+    })
+}
+
     return (
         <div className="mt-5">
             <h3 className="text-center">
-                
-            <GoogleLogin
-              clientId="1058165535709-phr5tftj0ss9j84l8vtl8q9la1b0ih7r.apps.googleusercontent.com"
-              buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={'single_host_origin'}
-            />
+
             
                 {esregistro? "Registro":"Login"}
             </h3>
@@ -121,6 +126,13 @@ const Login = (props) => {
                         {esregistro?"Registrar":"Login"}
                         
                     </button>
+                    <div className="login-buttons">
+                        <button className="btn btn-dark w-100 mb-2" onClick={signInWithGoogle}>
+                            
+                            <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="google icon"/>
+                            <span> Continue with Google</span>
+                        </button>
+                    </div>
                     <button 
                         className="btn btn-sm btn-info w-100  mb-2"
                         onClick={()=>setEsregistro(!esregistro)}
@@ -139,6 +151,8 @@ const Login = (props) => {
                             </button>
                         )
                     }
+                    
+
                      
                 </form>   
                 </div>

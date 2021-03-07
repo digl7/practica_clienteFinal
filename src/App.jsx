@@ -46,7 +46,9 @@ const App = () => {
             <Api/>
           </Route>
           <Route path="/" exact>
-            Inicio
+            ¡Bienvenido al videoclub! 
+            <p>Diego García Losada 2ºDAW A</p>
+            <p> ¡Tienes que registrar para poder usarlo!</p>             
           </Route>
         </Switch>
       </div>

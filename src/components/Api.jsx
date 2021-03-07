@@ -116,9 +116,9 @@ const Api = (props) => {
                     >prev
                     </button>
 
-                    <button class="btn text-dark me-3">
+                    <button className="btn text-dark me-3">
                         <span 
-                            class="badge text-dark badge-light">
+                            className="badge text-dark badge-light">
                             {pagina}
                             / 
                             {parseInt(totalPaginas/10)}
