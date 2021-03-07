@@ -78,16 +78,16 @@ const Login = (props) => {
 
     //si logeadoengoogle (de firebase.js) es true me redirecciona a /api. 
 
-//google login
-const signInWithGoogle = () => {
-    auth.signInWithPopup(googleProvider).then((res) => {
-        console.log(res.user)
-        props.history.push('/api')
+    //google login
+    const signInWithGoogle = () => {
+        auth.signInWithPopup(googleProvider).then((res) => {
+            console.log(res.user)
+            props.history.push('/api')
 
-    }).catch((error) => {
-        console.log(error.message)
-    })
-}
+        }).catch((error) => {
+            console.log(error.message)
+        })
+    }
 
     return (
         <div className="mt-5">
