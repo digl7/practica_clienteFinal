@@ -4,13 +4,13 @@
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
-    apiKey: "AIzaSyB76ns64HpI1Pgk3Nie8vbu9RrcbY6prdg",
-    authDomain: "prueba-627ce.firebaseapp.com",
-    projectId: "prueba-627ce",
-    storageBucket: "prueba-627ce.appspot.com",
-    messagingSenderId: "487264351705",
-    appId: "1:487264351705:web:fcc35572ef4aea82e6d5c8",
-    measurementId: "G-H4WL3GP096"
+    apiKey: "AIzaSyB5ENKS29_bU1gwY0USQc_ylYiCwbwbiY8",
+    authDomain: "react-pelis.firebaseapp.com",
+    projectId: "react-pelis",
+    storageBucket: "react-pelis.appspot.com",
+    messagingSenderId: "45017490130",
+    appId: "1:45017490130:web:5c89cbaf6584b8cc5cc30b",
+    measurementId: "G-17CDWM8459"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
