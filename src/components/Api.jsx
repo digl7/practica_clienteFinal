@@ -29,7 +29,6 @@ const Api = (props) => {
             console.log(pelis.Response)
             //Ejemplos que si funcionan --> Pirates | Star | Star wars
             if(pelis.Response === "True"){
-                console.log("hee")
                 setTotalPaginas(pelis.totalResults)
                 setPeliculas(pelis.Search)
             }
