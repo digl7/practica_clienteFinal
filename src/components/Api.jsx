@@ -16,7 +16,7 @@ const Api = (props) => {
     //paginacion
     const [pagina, setPagina] = useState(1)
     const [totalPaginas, setTotalPaginas] = useState("")
-    // http://www.omdbapi.com/?apikey=ea1489f1&s=%22Pirates%20of%20the%20Caribbean%22
+    // https://www.omdbapi.com/?apikey=ea1489f1&s=%22Pirates%20of%20the%20Caribbean%22
 
     const getData = async() => {
         if (tituloPelicula.length < 3 ){
@@ -24,7 +24,7 @@ const Api = (props) => {
         }
         else{
             setError("")
-            const data = await fetch("http://www.omdbapi.com/?apikey=ea1489f1&s="+tituloPelicula+'&page='+pagina);
+            const data = await fetch("https://www.omdbapi.com/?apikey=ea1489f1&s="+tituloPelicula+'&page='+pagina);
             const pelis = await data.json()
             console.log(pelis.Response)
             //Ejemplos que si funcionan --> Pirates | Star | Star wars
